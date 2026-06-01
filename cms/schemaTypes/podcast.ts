@@ -1,20 +1,22 @@
 import {defineField, defineType} from 'sanity'
+import { isUniqueOtherThanLanguage } from '../lib/isUniqueOtherThanLanguage'
 
 export default defineType({
   name: 'podcast',
   title: 'Podcast',
   type: 'document',
   fields: [
-     defineField({
-      name: "language",
-      type: "string",
+    defineField({
+      name: 'language',
+      type: 'string',
       options: {
         list: [
-          { title: "English", value: "en" },
-          { title: "Ukraine", value: "ua" },
+          {title: 'English', value: 'en'},
+          {title: 'Ukraine', value: 'ua'},
         ],
       },
     }),
+
     defineField({
       name: 'title',
       title: 'Title',
@@ -27,8 +29,17 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueOtherThanLanguage
+
       },
     }),
+    // defineField({
+    //   name: 'translationGroup',
+    //   title: 'Translation Group',
+    //   type: 'string',
+    //   validation: (Rule) => Rule.required(),
+    //   description: 'Same value for all locales of same post',
+    // }),
     defineField({
       name: 'description',
       title: 'Description',
@@ -63,6 +74,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'publishedAt',
@@ -88,7 +100,6 @@ export default defineType({
               title: 'Network',
               type: 'string',
               validation: (Rule) => Rule.min(1).max(50),
-
             },
             {
               name: 'link',

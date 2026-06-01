@@ -7,7 +7,6 @@ import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {structure} from './structure'
 import {table} from '@sanity/table'
 
-
 export default defineConfig({
   name: 'default',
   title: 'fyrre',
@@ -24,7 +23,7 @@ export default defineConfig({
     documentInternationalization({
       supportedLanguages: [
         {id: 'ua', title: 'Ukraine'},
-        {id: 'en', title: 'English'}
+        {id: 'en', title: 'English'},
       ],
       schemaTypes: ['post', 'author', 'podcast'],
       languageField: `language`,

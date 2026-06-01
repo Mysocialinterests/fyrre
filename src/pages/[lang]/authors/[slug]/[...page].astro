@@ -1,76 +1,82 @@
 ---
-import Layout from "../../../layouts/Base.astro";
-import { client } from "../../../lib/sanity";
-import Card from "../../../components/AuthorBlogCard.astro";
-import PortableComponent from "../../../components/builder/PortableComponent.astro";
-import Pagination from "../../../components/Pagination.astro";
+import Layout from "../../../../layouts/Base.astro";
+import { client } from "../../../../lib/sanity";
+import Card from "../../../../components/AuthorBlogCard.astro";
+import PortableComponent from "../../../../components/builder/PortableComponent.astro";
+import Pagination from "../../../../components/Pagination.astro";
 
-const { slug } = Astro.params;
-
-const author = await client.fetch(
-  `
-  *[_type == "author" && language == "en" && slug.current == $slug][0]{
-    name,
-    description,
-    city,
-    job,
-    bio,
-    "slug": slug.current,
-    "image": image.asset->url
-  }
-  `,
-  { slug },
-);
-
-if (!author) {
-  throw new Error("Author not found");
-}
+import { LOCALES } from "../../../../i18n";
 
 export async function getStaticPaths({ paginate }) {
-  const authors = await client.fetch(`
-    *[_type == "author" && language == "en"]{
-      "slug": slug.current
-    }
-  `);
-
   const paths = [];
 
-  for (const a of authors) {
-    const posts = await client.fetch(
-      `
-      *[
-        _type == "post"
-        && language == "en"
-        && author->slug.current == $slug
-      ]
-      | order(_createdAt desc){
-        title,
-        duration,
-        _createdAt,
+  for (const lang of Object.keys(LOCALES)) {
+    const authors = await client.fetch(
+      `*[ _type == "author" && language == $lang ]{
+        name,
+        description,
+        city,
+        job,
+        bio,
+        language,
         "slug": slug.current,
-        "image": thumbnail.asset->url
-      }
-      `,
-      { slug: a.slug },
+        "image": image.asset->url
+      }`,
+      { lang },
     );
 
-    const paginated = paginate(posts, {
-      pageSize: 4,
-      params: {
-        slug: a.slug,
-      },
-    });
+    for (const author of authors) {
+      const posts = await client.fetch(
+        `
+    *[
+      _type == "post" &&
+      language == $lang &&
+      author->slug.current == $slug
+    ]
+    | order(_createdAt desc){
+      title,
+      duration,
+      _createdAt,
+      "slug": slug.current,
+      "image": thumbnail.asset->url
+    }
+    `,
+        {
+          lang,
+          slug: author.slug,
+        },
+      );
 
-    paths.push(...paginated);
+      const paginated = paginate(posts, {
+        pageSize: 4,
+        params: {
+          lang,
+          slug: author.slug,
+        },
+        props: {
+          author,
+        },
+      });
+
+      paths.push(...paginated);
+    }
   }
 
   return paths;
 }
 
-/* ---------------- PAGE DATA ---------------- */
-const { page } = Astro.props;
+const locale = Astro.params.lang;
+
+const { page, author } = Astro.props;
+
+if (!author) {
+  throw new Error("Author not found");
+}
+
 const posts = page.data;
+
 const currentPage = page.currentPage;
+
 const totalPages = page.lastPage;
 
 const socials = [
@@ -95,13 +101,13 @@ const socials = [
 <Layout
   title={author.name}
   description={author.description}
-  image={author.image}
+  image={author?.image || ""}
 >
   <section class="mt-10">
     <div class="container">
       <div class="flex items-center justify-between flex-wrap gap-4">
         <a
-          href="/authors"
+          href={`/${locale}/authors`}
           class="btn btn-link text-inherit uppercase no-underline group p-0"
         >
           <i class="fa-solid fa-arrow-left group-hover:translate-x-1"></i>
@@ -119,7 +125,7 @@ const socials = [
       >
         <aside>
           {
-            author.image && (
+            author && (
               <img
                 src={author.image}
                 alt={author.name}
@@ -175,7 +181,7 @@ const socials = [
           }
 
           {
-            author.bio && (
+            author?.bio && (
               <div class="prose prose-lg max-w-none mt-10">
                 <PortableComponent body={author.bio} />
               </div>

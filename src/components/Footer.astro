@@ -2,6 +2,7 @@
 const today = new Date();
 import Logo from "./Logo.astro";
 import Socials from "./Socials.astro";
+const locale = Astro.currentLocale;
 
 const navbar = [
   {
@@ -106,7 +107,7 @@ const navbar = [
             navbar.map((item) => (
               <nav class="grid gap-0">
                 {item.links.map((link) => (
-                  <a href={link.url} class="hover:underline px-4 py-2">
+                  <a href={`/${locale}${link.url}`} class="hover:underline px-4 py-2">
                     {link.title}
                   </a>
                 ))}

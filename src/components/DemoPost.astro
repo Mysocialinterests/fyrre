@@ -2,9 +2,12 @@
 import Image from "astro/components/Image.astro";
 import { client } from "../lib/sanity";
 import { formatDate } from "../utils/dateFormatter";
+const locale = Astro.currentLocale;
 
-const post = await client.fetch(`
-  *[_type == "post" && language == "en"] | order(_createdAt desc)[0]{
+const post = await client.fetch(
+  `
+  *[_type == "post" && language == $locale]
+  | order(_createdAt desc)[0]{
     title,
     description,
     duration,
@@ -12,15 +15,19 @@ const post = await client.fetch(`
     "slug": slug.current,
     "image": coalesce(mainImage.asset->url, thumbnail.asset->url),
     "author": author->{name, slug},
-   "categories": categories[0]->{
-      "title": title[language == "en"][0].value,
+    "categories": categories[0]->{
+      "title": title[language == $locale][0].value,
       slug
     }
   }
-`);
+  `,
+  {
+    locale,
+  },
+);
 
 //console.log("post", post);
-//console.log("cat", post.categories.title[0].value);
+console.log("cat", post.categories.title);
 //console.log("img", post.image);
 ---
 
@@ -29,11 +36,11 @@ const post = await client.fetch(`
     <section class="section section-demo-post">
       <div class="container grid gap-10">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 order-2 lg:order-1 group">
-          <a href={`/blog/${post.slug}`} class="group-hover:underline">
+          <a href={`/${locale}/blog/${post.slug}`} class="group-hover:underline">
             <h2 class="h1">{post.title}</h2>
           </a>
           <div class="grid gap-4">
-            <a href={`/blog/${post.slug}`}>
+            <a href={`/${locale}/blog/${post.slug}`}>
               <p>{post.description}</p>
             </a>
 
@@ -41,7 +48,7 @@ const post = await client.fetch(`
               <p>
                 <b class="mr-2">Text</b>
                 <a
-                  href={`/authors/${post.author.slug.current}`}
+                  href={`/${locale}/authors/${post.author.slug.current}`}
                   class="hover:underline"
                 >
                   {post.author.name}
@@ -57,7 +64,7 @@ const post = await client.fetch(`
               </p>
 
               <a
-                href={`/blog/${post.categories.slug.current}`}
+                href={`/${locale}/blog/${post.categories.slug.current}`}
                 class="ml-auto btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
               >
                 {post.categories.title}
@@ -66,7 +73,7 @@ const post = await client.fetch(`
           </div>
         </div>
         <div class="order-1 lg:order-2">
-          <a href={`/blog/${post.slug}`} class="group-hover:underline">
+          <a href={`/${locale}/blog/${post.slug}`} class="group-hover:underline">
             <Image
               src={post.image}
               alt={post.title}
@@ -77,7 +84,7 @@ const post = await client.fetch(`
               loading="eager"
               fetchpriority="high"
               sizes="100vw"
-              class="w-full h-auto"
+              class="w-full h-auto aspect-[2/1] object-cover"
             />
           </a>
         </div>

@@ -5,9 +5,11 @@ import Banner from "../components/Banner.astro";
 import MostPopularPosts from "../components/MostPopularPosts.astro";
 
 import { client } from "../lib/sanity";
+const locale = Astro.currentLocale;
 
-const posts = await client.fetch(`
-  *[_type == "post" && language == "en"]
+const posts = await client.fetch(
+  `
+  *[_type == "post" && language == $locale]
   | order(_createdAt desc)
   [1...7]{
     title,
@@ -18,11 +20,15 @@ const posts = await client.fetch(`
     "image": thumbnail.asset->url,
     "author": author->{name, slug},
     "categories": categories[0]->{
-      "title": title[language == "en"][0].value,
+      "title": title[language == $locale][0].value,
       slug
     }
   }
-`);
+`,
+  {
+    locale,
+  },
+);
 
 //console.log("posts", posts);
 //console.log("cat", post.categories.title[0].value);
@@ -41,7 +47,7 @@ const posts = await client.fetch(`
               ))}
             </div>
             <a
-              href="/blog"
+              href={`/${locale}/blog`}
               class="btn btn-link mt-10 text-inherit uppercase no-underline group p-0"
             >
               All articles

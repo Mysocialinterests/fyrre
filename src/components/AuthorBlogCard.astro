@@ -1,13 +1,15 @@
 ---
 const { slug, image, title, _createdAt, duration } = Astro.props;
 import { formatDate } from "../utils/dateFormatter";
+const locale = Astro.currentLocale;
+
 ---
 
 <article
   class="border lg:even:border-l-0 even:border-y-0 lg:even:border-y last-of-type:border-b lg:nth-[4n+3]:border-t-0 lg:nth-[4n+4]:border-t-0 p-4 lg:p-10"
 >
   <a
-    href={`/blog/${slug}`}
+    href={`/${locale}/blog/${slug}`}
     class="grid lg:text-left grid-cols-[150px_1fr] gap-4 md:gap-x-10 gap-y-4 items-center"
   >
     {

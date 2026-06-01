@@ -1,4 +1,5 @@
 import {defineField, defineType} from 'sanity'
+import { isUniqueOtherThanLanguage } from '../lib/isUniqueOtherThanLanguage'
 
 export default defineType({
   name: 'post',
@@ -15,6 +16,7 @@ export default defineType({
         ],
       },
     }),
+
     defineField({
       name: 'title',
       title: 'Title',
@@ -27,8 +29,10 @@ export default defineType({
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueOtherThanLanguage
       },
     }),
+   
     defineField({
       name: 'description',
       title: 'Description',
@@ -42,6 +46,7 @@ export default defineType({
       type: 'reference',
       to: [{type: 'author'}],
       weak: true,
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'duration',

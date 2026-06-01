@@ -1,42 +1,61 @@
 ---
 import Image from "astro/components/Image.astro";
-import Layout from "../../layouts/Base.astro";
-import { client } from "../../lib/sanity";
-import { formatDate } from "../../utils/dateFormatter";
-import PortableComponent from "../../components/builder/PortableComponent.astro";
-import PodcastCard from "../../components/PodcastCard.astro";
+import Layout from "../../../layouts/Base.astro";
+import { client } from "../../../lib/sanity";
+import { formatDate } from "../../../utils/dateFormatter";
+import PortableComponent from "../../../components/builder/PortableComponent.astro";
+import PodcastCard from "../../../components/PodcastCard.astro";
+
+import { LOCALES } from "../../../i18n";
 
 export async function getStaticPaths() {
-  const podcasts = await client.fetch(`
-    *[_type == "podcast" && language == "en"]{
-      title,
-      _createdAt,
-      duration,
-      episod,
-      body,
-      description,
-      "slug": slug.current,
-      "image": mainImage.asset->url
-    }
-  `);
+  const paths = [];
 
-  return podcasts.map((podcast) => ({
-    params: {
-      slug: podcast.slug,
-    },
-    props: {
-      podcast,
-    },
-  }));
+  for (const lang of Object.keys(LOCALES)) {
+    const podcasts = await client.fetch(
+      `
+      *[
+        _type == "podcast" &&
+        language == $lang
+      ]{
+        title,
+        _createdAt,
+        duration,
+        episod,
+        body,
+        description,
+        language,
+        "slug": slug.current,
+        "image": mainImage.asset->url
+      }
+      `,
+      { lang },
+    );
+
+    for (const podcast of podcasts) {
+      paths.push({
+        params: {
+          lang,
+          slug: podcast.slug,
+        },
+        props: {
+          podcast,
+        },
+      });
+    }
+  }
+
+  return paths;
 }
 
+const locale = Astro.params.lang;
 const { podcast } = Astro.props;
 
 const relatedPodcasts = await client.fetch(
   `
   *[
     _type == "podcast"
-    && language == "en"
+    && language == $lang
     && slug.current != $currentSlug
   ]
   | order(_createdAt desc)[0...3]{
@@ -49,6 +68,7 @@ const relatedPodcasts = await client.fetch(
   }
   `,
   {
+    lang: locale,
     currentSlug: podcast.slug,
   },
 );
@@ -75,13 +95,13 @@ const socials = [
 <Layout
   title={podcast.title}
   description={podcast.description}
-  image={podcast.image}
+  image={podcast?.image || ""}
 >
   <section class="mt-10">
     <div class="container">
       <div class="flex items-center justify-between flex-wrap gap-4">
         <a
-          href="/podcast"
+          href={`/${locale}/podcast`}
           class="btn btn-link text-inherit uppercase no-underline group p-0"
         >
           <i class="fa-solid fa-arrow-left group-hover:translate-x-1"></i>
@@ -100,15 +120,19 @@ const socials = [
       >
         <aside>
           <div class="grid">
-            <Image
-              src={podcast.image}
-              alt={podcast.title}
-              width="369"
-              height="462"
-              format="webp"
-              quality={80}
-              class="w-full h-auto [grid-area:1/1/2/2]"
-            />
+            {
+              podcast?.image && (
+                <Image
+                  src={podcast.image}
+                  alt={podcast.title}
+                  width="369"
+                  height="462"
+                  format="webp"
+                  quality={80}
+                  class="w-full h-auto [grid-area:1/1/2/2]"
+                />
+              )
+            }
 
             <div
               class="flex flex-col justify-between [grid-area:1/1/2/2] text-white p-4 lg:p-10"
@@ -121,7 +145,7 @@ const socials = [
               <div class="flex justify-between items-end">
                 <div>
                   <p class="text-3xl uppercase">
-                    Ep {podcast.episod}
+                    Ep {podcast?.episod}
                   </p>
                 </div>
 
@@ -169,7 +193,7 @@ const socials = [
 
             <div class="grid grid-cols-[1fr_auto] gap-2">
               <b>Duration</b>
-              <span>{podcast.duration}</span>
+              <span>{podcast?.duration}</span>
             </div>
 
             <div class="grid grid-cols-[1fr_auto] gap-2">
@@ -197,16 +221,16 @@ const socials = [
         <div class="post">
           <div>
             <p class="font-semibold uppercase mb-3">
-              Episode {podcast.episod}
+              Episode {podcast?.episod}
             </p>
 
-            <h1 class="mb-6">{podcast.title}</h1>
+            <h1 class="mb-6">{podcast?.title}</h1>
           </div>
 
           <p class="text-lg my-10 font-semibold">
-            {podcast.description}
+            {podcast?.description}
           </p>
-          <PortableComponent body={podcast.body} />
+          {podcast?.body && <PortableComponent body={podcast.body} />}
         </div>
       </div>
     </div>
@@ -221,7 +245,7 @@ const socials = [
               <h2 class="uppercase">Latest Episodes</h2>
 
               <a
-                href="/podcast"
+                href={`/${locale}/podcast`}
                 class="btn btn-link text-inherit uppercase no-underline group p-0"
               >
                 All Episodes

@@ -1,8 +1,10 @@
 ---
 import Logo from "./Logo.astro";
 import Socials from "./Socials.astro";
+import LangSwitcher from "./i18n/LangSwitcher.astro";
 
 import { menu } from "../consts";
+const locale = Astro.currentLocale;
 ---
 
 <header class="relative header px-4 z-10">
@@ -14,15 +16,18 @@ import { menu } from "../consts";
       <nav class="hidden md:flex gap-x-6 gap-y-2 items-center ml-auto">
         {
           menu.map((link) => (
-            <a class="hover:underline" href={link.url}>
+            <a class="hover:underline" href={`/${locale}${link.url}`}>
               {link.title}
             </a>
           ))
         }
       </nav>
-      <div class="hidden md:flex gap-4">
+      <div class="hidden md:flex gap-4 items-center">
         &mdash;
         <Socials />
+      </div>
+      <div class="ml-auto md:ml-0">
+        <LangSwitcher locale={locale} />
       </div>
       <div class="flex-none md:hidden">
         <label

@@ -2,9 +2,11 @@
 import PodcastCard from "../components/PodcastCard.astro";
 
 import { client } from "../lib/sanity";
+const locale = Astro.currentLocale;
 
-const podcasts = await client.fetch(`
-  *[_type == "podcast" && language == "en"] | order(_createdAt desc)[0...3]{
+const podcasts = await client.fetch(
+  `
+  *[_type == "podcast" && language == $locale] | order(_createdAt desc)[0...3]{
     title,
     _createdAt,
     duration, 
@@ -12,7 +14,11 @@ const podcasts = await client.fetch(`
     "slug": slug.current,
     "image": mainImage.asset->url
   }
-`);
+`,
+  {
+    locale,
+  },
+);
 ---
 
 {
@@ -23,7 +29,7 @@ const podcasts = await client.fetch(`
           <div class="flex flex-wrap gap-4 justify-between items-center">
             <h2 class="h1">Podcast</h2>
             <a
-              href="/podcast"
+              href={`/${locale}/podcast`}
               class="btn btn-link text-inherit uppercase no-underline group p-0"
             >
               All Episodes

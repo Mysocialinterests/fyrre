@@ -2,16 +2,22 @@
 import AuthorCard from "../components/AuthorCard.astro";
 
 import { client } from "../lib/sanity";
+const locale = Astro.currentLocale;
 
-const authors = await client.fetch(`
-  *[_type == "author" && language == "en"] | order(_createdAt desc)[0...6]{
+const authors = await client.fetch(
+  `
+  *[_type == "author" && language == $locale] | order(_createdAt desc)[0...6]{
     name,
     city,
     job,
     "slug": slug.current,
     "image": image.asset->url
   }
-`);
+`,
+  {
+    locale,
+  },
+);
 
 //console.log("authors", authors);
 ---
@@ -24,7 +30,7 @@ const authors = await client.fetch(`
           <div class="flex flex-wrap gap-4 justify-between items-center">
             <h2 class="h1">Authors</h2>
             <a
-              href="/authors"
+              href={`/${locale}/authors`}
               class="btn btn-link text-inherit uppercase no-underline group p-0"
             >
               All Authors

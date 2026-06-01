@@ -1,21 +1,22 @@
-import { describe } from 'astro:schema'
-import { defineField, defineType } from 'sanity'
+import {defineField, defineType} from 'sanity'
+import { isUniqueOtherThanLanguage } from '../lib/isUniqueOtherThanLanguage'
 
 export default defineType({
   name: 'author',
   title: 'Author',
   type: 'document',
   fields: [
-     defineField({
-      name: "language",
-      type: "string",
+    defineField({
+      name: 'language',
+      type: 'string',
       options: {
         list: [
-          { title: "English", value: "en" },
-          { title: "Ukraine", value: "ua" },
+          {title: 'English', value: 'en'},
+          {title: 'Ukraine', value: 'ua'},
         ],
       },
     }),
+
     defineField({
       name: 'name',
       title: 'Name',
@@ -29,6 +30,7 @@ export default defineType({
       options: {
         source: 'name',
         maxLength: 96,
+        isUnique: isUniqueOtherThanLanguage
       },
     }),
     defineField({
@@ -42,7 +44,7 @@ export default defineType({
       title: 'City',
       type: 'string',
       validation: (Rule) => Rule.required().min(1).max(100),
-    }), 
+    }),
     defineField({
       name: 'description',
       title: 'Description',
@@ -57,6 +59,7 @@ export default defineType({
       options: {
         hotspot: true,
       },
+      validation: (Rule) => Rule.required(),
     }),
     defineField({
       name: 'bio',
@@ -66,7 +69,7 @@ export default defineType({
         {
           title: 'Block',
           type: 'block',
-          styles: [{ title: 'Normal', value: 'normal' }],
+          styles: [{title: 'Normal', value: 'normal'}],
           lists: [],
         },
       ],
@@ -84,7 +87,6 @@ export default defineType({
               title: 'Network',
               type: 'string',
               validation: (Rule) => Rule.min(1).max(50),
-
             },
             {
               name: 'link',
@@ -96,7 +98,6 @@ export default defineType({
               name: 'icon',
               title: 'Icon',
               type: 'string',
-              
             },
           ],
         },

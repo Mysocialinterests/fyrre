@@ -6,6 +6,11 @@ import Demo from "../components/DemoPost.astro";
 import Posts from "../components/Posts.astro";
 import Podcasts from "../components/Podcasts.astro";
 import Authors from "../components/Authors.astro";
+const locale = Astro.url.pathname.split("/")[1];
+
+// if (!["en", "uk", "de"].includes(locale)) {
+//   return Astro.redirect("/en" + Astro.url.pathname);
+// }
 ---
 
 <Layout title="Homepage">

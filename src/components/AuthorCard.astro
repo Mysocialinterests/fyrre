@@ -1,6 +1,8 @@
 ---
 import Image from "astro/components/Image.astro";
 const { name, city, job, slug, image } = Astro.props;
+const locale = Astro.currentLocale;
+
 ---
 
 <article
@@ -11,10 +13,10 @@ const { name, city, job, slug, image } = Astro.props;
                     md:nth-[4n+6]:border-t-0"
 >
   <a
-    href={`/authors/${slug}`}
+    href={`/${locale}/authors/${slug}`}
     class="grid grid-cols-1 text-center lg:text-left lg:grid-cols-[150px_1fr] gap-10 items-center"
   >
-    <Image
+   {image && <Image
       src={image}
       alt=""
       width="150"
@@ -22,7 +24,7 @@ const { name, city, job, slug, image } = Astro.props;
       format="webp"
       quality={80}
       class="rounded-full aspect-square mx-auto h-auto"
-    />
+    />}
     <div class="mx-auto lg:mx-0">
       <h3>{name}</h3>
       <div

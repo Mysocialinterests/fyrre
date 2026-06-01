@@ -3,6 +3,8 @@ import Image from "astro/components/Image.astro";
 import { formatDate } from "../utils/dateFormatter";
 
 const { title, _createdAt, duration, episod, slug, image } = Astro.props;
+const locale = Astro.currentLocale;
+
 ---
 
 <article
@@ -11,11 +13,11 @@ const { title, _createdAt, duration, episod, slug, image } = Astro.props;
                     lg:nth-[4n+3]:border-l-0 p-4 lg:p-10 group flex flex-col"
 >
   <a
-    href={`/podcast/${slug}`}
+    href={`/${locale}/podcast/${slug}`}
     class="grid grid-cols-1 sm:grid-cols-[1fr_2fr] gap-4 lg:gap-10 lg:grid-cols-1 flex-1"
   >
     <div class="grid">
-      <Image
+      {image && <Image
         src={image}
         alt={title}
         width="369"
@@ -23,7 +25,7 @@ const { title, _createdAt, duration, episod, slug, image } = Astro.props;
         format="webp"
         quality={80}
         class="w-full h-auto [grid-area:1/1/2/2]"
-      />
+      />}
       <div
         class="flex flex-col justify-between [grid-area:1/1/2/2] text-white p-4 lg:p-10"
       >

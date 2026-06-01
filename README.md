@@ -10,7 +10,7 @@ A fast and modern starter template designed to help teams build and launch magaz
 
 ## Demo
 
-- ✨ [Live Demo](https://fyrre-seven.vercel.app/)
+- ✨ [Live Demo](https://fyrre-seven.vercel.app/en)
 - 💨 [PageSpeed Insights Report](https://pagespeed.web.dev/analysis/https-fyrre-seven-vercel-app/odkg3zo8qd?form_factor=mobile)
 - [Sitemap.xml](https://fyrre-seven.vercel.app/sitemap-index.xml)
 - [Robots.txt](https://fyrre-seven.vercel.app/robots.txt)
