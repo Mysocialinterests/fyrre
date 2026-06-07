@@ -1,14 +1,25 @@
 ---
 import Layout from "../../../layouts/Base.astro";
 import Hero from "../../../components/Hero.astro";
+import { getCollection } from "astro:content";
 import { LOCALES } from "../../../i18n";
 
-export const getStaticPaths = () =>
-  Object.keys(LOCALES).map((lang) => ({
-    params: { lang },
-  }));
+export async function getStaticPaths({ paginate }) {
+  const posts = await getCollection("blog");
+  const paths = [];
+
+  for (const lang of Object.keys(LOCALES)) {
+    const paginated = paginate(posts, {
+      pageSize: 12,
+      params: { lang },
+    });
+    paths.push(...paginated);
+  }
+  return paths;
+}
 
 const locale = Astro.params.lang;
+const { page } = Astro.props;
 ---
 
 <Layout title="Articles — Mes Intérêts Sociaux">
@@ -18,43 +29,26 @@ const locale = Astro.params.lang;
     <div class="container flex flex-wrap justify-between items-center gap-4">
       <p class="font-semibold uppercase">Thématiques</p>
       <div class="flex flex-wrap items-center gap-4 justify-start">
-        <a
-          href={`/${locale}/blog`}
-          class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
-        >
-          Tous
-        </a>
-        <a
-          href={`/${locale}/blog`}
-          class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
-        >
-          Santé
-        </a>
-        <a
-          href={`/${locale}/blog`}
-          class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
-        >
-          Environnement
-        </a>
-        <a
-          href={`/${locale}/blog`}
-          class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
-        >
-          Société
-        </a>
-        <a
-          href={`/${locale}/blog`}
-          class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase"
-        >
-          Technologie
-        </a>
+        <a href={`/${locale}/blog`} class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase">Tous</a>
+        <a href={`/${locale}/blog`} class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase">Santé</a>
+        <a href={`/${locale}/blog`} class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase">Environnement</a>
+        <a href={`/${locale}/blog`} class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase">Société</a>
+        <a href={`/${locale}/blog`} class="btn btn-outline rounded-full py-1 px-4 h-auto hover:bg-black hover:text-white uppercase">Technologie</a>
       </div>
     </div>
   </section>
 
   <section class="section mt-5!">
     <div class="container">
-      <p class="text-lg py-10">Les articles arrivent bientôt. Restez à l'écoute!</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 gap-6">
+        {page.data.map((post) => (
+          <a href={`/${locale}/blog/${post.id}`} class="border p-6 hover:underline">
+            <p class="text-xs uppercase opacity-50 mb-2">{post.data.pubDate.toLocaleDateString('fr-CA')}</p>
+            <h3 class="font-bold mb-2">{post.data.title}</h3>
+            <p class="text-sm opacity-70">{post.data.description}</p>
+          </a>
+        ))}
+      </div>
     </div>
   </section>
 </Layout>
