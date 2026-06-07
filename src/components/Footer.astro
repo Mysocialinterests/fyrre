@@ -7,90 +7,53 @@ const locale = Astro.currentLocale;
 const navbar = [
   {
     links: [
-      {
-        url: "#",
-        title: "Art",
-      },
-      {
-        url: "#",
-        title: "Design",
-      },
-      {
-        url: "#",
-        title: "Architecture",
-      },
+      { url: "/blog", title: "Santé" },
+      { url: "/blog", title: "Environnement" },
+      { url: "/blog", title: "Société" },
+      { url: "/blog", title: "Technologie" },
     ],
   },
   {
     links: [
-      {
-        url: "/blog",
-        title: "Magazine",
-      },
-
-      {
-        url: "/podcast",
-        title: "Podcast",
-      },
-      {
-        url: "/authors",
-        title: "Authors",
-      },
+      { url: "/blog", title: "Articles" },
+      { url: "/podcast", title: "Podcast" },
+      { url: "/authors", title: "À propos" },
     ],
   },
   {
     links: [
-      {
-        url: "#",
-        title: "Styleguide",
-      },
-      {
-        url: "#",
-        title: "Licensing",
-      },
-      {
-        url: "#",
-        title: "Changelog",
-      },
+      { url: "#", title: "Newsletter" },
+      { url: "#", title: "Contact" },
     ],
   },
 ];
 ---
 
 <footer class="footer bg-black text-white pb-10 pt-5">
-  <div
-    class="footer-topline overflow-hidden uppercase flex gap-4 overflow-x-hidden w-full"
-  >
-    {Array.from({ length: 100 }).map((_) => <span>Newsletter+++</span>)}
+  <div class="footer-topline overflow-hidden uppercase flex gap-4 overflow-x-hidden w-full">
+    {Array.from({ length: 100 }).map((_) => <span>Transfert de connaissances+++</span>)}
   </div>
   <div class="footer-top w-full">
     <div class="container">
-      <div
-        class="grid grid-cols-1 md:grid-cols-[1fr_auto] xl:grid-cols-[1fr_2fr] gap-10 items-center"
-      >
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] xl:grid-cols-[1fr_2fr] gap-10 items-center">
         <div>
           <h2 class="text-4xl sm:text-5xl uppercase font-bold">
-            Design News to your inbox
+            La science dans votre boîte courriel
           </h2>
         </div>
         <div>
-          <form
-            action="/"
-            method="GET"
-            class="flex flex-wrap gap-3 items-center md:ml-auto lg:max-w-sm"
-          >
+          <form action="/" method="GET" class="flex flex-wrap gap-3 items-center md:ml-auto lg:max-w-sm">
             <input
               type="text"
               required
               name="subscribe_email"
               id="subscribe-email"
-              placeholder="Email"
+              placeholder="Courriel"
               class="input text-black rounded-none flex-1"
             />
-            <button
-              class="btn bg-white rounded-none shadow-none hover:bg-neutral hover:text-white uppercase"
-              type="submit">Sign Up</button
-            >
+            <button class="btn bg-white rounded-none shadow-none hover:bg-neutral hover:text-white uppercase" type="submit">
+              S'abonner
+            </button>
           </form>
         </div>
       </div>
@@ -103,17 +66,15 @@ const navbar = [
           <Logo />
         </div>
         <div class="grid grid-cols-2 md:grid-cols-3">
-          {
-            navbar.map((item) => (
-              <nav class="grid gap-0">
-                {item.links.map((link) => (
-                  <a href={`/${locale}${link.url}`} class="hover:underline px-4 py-2">
-                    {link.title}
-                  </a>
-                ))}
-              </nav>
-            ))
-          }
+          {navbar.map((item) => (
+            <nav class="grid gap-0">
+              {item.links.map((link) => (
+                <a href={`/${locale}${link.url}`} class="hover:underline px-4 py-2">
+                  {link.title}
+                </a>
+              ))}
+            </nav>
+          ))}
         </div>
       </div>
     </div>
@@ -121,8 +82,7 @@ const navbar = [
   <div class="footer-btm w-full">
     <div class="container flex flex-wrap gap-4 justify-between items-center">
       <p class="text-xs opacity-50">
-        &copy; {today.getFullYear()} Made by Anastasiia Berest - Powered by Astro
-        + Sanity CMS
+        &copy; {today.getFullYear()} Mes Intérêts Sociaux — Propulsé par Astro
       </p>
       <Socials />
     </div>
