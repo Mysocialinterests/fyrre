@@ -1,12 +1,11 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
+export const SITE_TITLE = 'MES INTÉRÊTS SOCIAUX';
 
-export const SITE_TITLE = 'FYRRE MAGAZINE';
-export const SITE_DESCRIPTION = 'A fast and modern starter template designed to help teams build and launch magazines, blogs, or brand websites efficiently, with a focus on performance and scalability.';
+export const SITE_DESCRIPTION = 'Passer du bruit à la nuance : faire de la rigueur scientifique un outil du quotidien.';
+
 export const menu = [
   {
     url: "/blog",
-    title: "Magazine",
+    title: "Articles",
   },
   {
     url: "/podcast",
@@ -14,6 +13,6 @@ export const menu = [
   },
   {
     url: "/authors",
-    title: "Authors",
+    title: "À propos",
   },
 ];
