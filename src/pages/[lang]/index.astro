@@ -5,7 +5,6 @@ import Topline from "../../components/Topline.astro";
 import Demo from "../../components/DemoPost.astro";
 import Posts from "../../components/Posts.astro";
 import Podcasts from "../../components/Podcasts.astro";
-import Authors from "../../components/Authors.astro";
 import { LOCALES } from "../../i18n";
 const locale = Astro.currentLocale;
 
@@ -15,11 +14,10 @@ export const getStaticPaths = () =>
   }));
 ---
 
-<Layout title="Homepage">
-  <Hero title="Art & Life" />
+<Layout title="Mes Intérêts Sociaux — Passer du bruit à la nuance">
+  <Hero title="Passer du bruit à la nuance" />
   <Topline />
   <Demo />
   <Posts />
   <Podcasts />
-  <Authors />
 </Layout>
