@@ -2,6 +2,9 @@
 title: "Sommes-nous vraiment devenus les auteurs de notre propre vie?"
 description: "Une recherche sociologique québécoise explore comment l'individualisation transforme notre façon d'être au monde — et ce que ça révèle sur nos sociétés contemporaines."
 pubDate: 2026-06-07
+researchTitle: "Société et subjectivité : transformations contemporaines"
+researchNote: "Ouvrage collectif réunissant des contributions de chercheurs de plusieurs pays, dont Bernard Lahire, Jean-Claude Kaufmann et Michel Wieviorka, sur les manifestations concrètes de l'individualisation dans quatre sphères : la construction identitaire, l'espace public/privé, les institutions et les formes de sociabilité."
+researchCitation: "Mercure, D. et Bourdages-Sylvain, M.-P. (dir.), 2021 · Presses de l'Université Laval · 190 p. · libre accès"
 ---
 
 ## La grande question
@@ -67,8 +70,3 @@ Le résultat? Une société créative, ouverte, diverse. Mais aussi une sociét�
 Ce que les chercheurs nous disent, au fond, c'est ceci : comprendre comment la société façonne notre façon de nous voir nous-mêmes, c'est le premier pas pour ne plus subir ce façonnage sans le questionner.
 
 Sommes-nous vraiment les auteurs de notre vie? Peut-être. Mais le script, lui, a été écrit bien avant notre naissance.
-
----
-
-📚 **Source**
-Mercure, D. et Bourdages-Sylvain, M.-P. (dir.) (2021). *Société et subjectivité : transformations contemporaines*. Presses de l'Université Laval, coll. Sociologie contemporaine, 190 p. Disponible en libre accès via la bibliothèque de l'Université Laval.

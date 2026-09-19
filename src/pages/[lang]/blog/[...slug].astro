@@ -101,29 +101,81 @@ const related = allPosts
       <div class="grid grid-cols-1 lg:grid-cols-[1fr_240px] gap-10 items-start">
         <div id="article-body" class="post max-w-3xl">
           <Content />
+
+          {post.data.researchTitle && (
+            <div class="border p-6 md:p-8 mt-10">
+              <p class="text-xs uppercase opacity-50 mb-3 font-semibold">
+                {t({ fr: "En savoir plus sur la recherche", en: "More on the research" })}
+              </p>
+              <h3 class="font-bold text-xl md:text-2xl mb-3">{post.data.researchTitle}</h3>
+              {post.data.researchNote && (
+                <p class="opacity-70 mb-4">{post.data.researchNote}</p>
+              )}
+              {post.data.researchCitation && (
+                <p class="text-sm opacity-50">{post.data.researchCitation}</p>
+              )}
+              {post.data.researchUrl && (
+                <a
+                  href={post.data.researchUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-link text-inherit uppercase no-underline group p-0 mt-4"
+                >
+                  {t({ fr: "Consulter l'étude", en: "Read the study" })}
+                  <i class="fa-solid fa-arrow-right group-hover:translate-x-1"></i>
+                </a>
+              )}
+            </div>
+          )}
         </div>
 
-        {toc.length > 0 && (
-          <aside class="hidden lg:block sticky top-10">
-            <p class="text-xs uppercase opacity-50 mb-3 font-semibold">
-              {t({ fr: "Dans cet article", en: "In this article" })}
+        <aside class="lg:sticky lg:top-10 grid gap-8">
+          {toc.length > 0 && (
+            <div>
+              <p class="text-xs uppercase opacity-50 mb-3 font-semibold">
+                {t({ fr: "Dans cet article", en: "In this article" })}
+              </p>
+              <ul id="toc" class="hidden lg:grid gap-2 border-l">
+                {toc.map((h) => (
+                  <li>
+                    <a
+                      href={`#${h.slug}`}
+                      data-toc-link
+                      data-target={h.slug}
+                      class="block pl-4 -ml-px border-l-2 border-transparent hover:border-black text-sm opacity-60 hover:opacity-100"
+                    >
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div class="border p-6">
+            <p class="font-semibold uppercase mb-2">
+              {t({ fr: "La science dans votre boîte courriel", en: "Science in your inbox" })}
             </p>
-            <ul id="toc" class="grid gap-2 border-l">
-              {toc.map((h) => (
-                <li>
-                  <a
-                    href={`#${h.slug}`}
-                    data-toc-link
-                    data-target={h.slug}
-                    class="block pl-4 -ml-px border-l-2 border-transparent hover:border-black text-sm opacity-60 hover:opacity-100"
-                  >
-                    {h.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </aside>
-        )}
+            <p class="text-sm opacity-70 mb-4">
+              {t({ fr: "Un nouvel article chaque semaine, sans bruit.", en: "One new article a week, no noise." })}
+            </p>
+            <form action="/" method="GET" class="grid gap-2">
+              <input
+                type="email"
+                required
+                name="subscribe_email"
+                placeholder={t({ fr: "Courriel", en: "Email" })}
+                class="input input-bordered rounded-none w-full"
+              />
+              <button
+                class="btn bg-black text-white rounded-none shadow-none hover:bg-neutral uppercase"
+                type="submit"
+              >
+                {t({ fr: "S'abonner", en: "Subscribe" })}
+              </button>
+            </form>
+          </div>
+        </aside>
       </div>
     </div>
   </section>

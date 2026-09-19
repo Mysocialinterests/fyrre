@@ -2,6 +2,9 @@
 title: "Have we really become the authors of our own lives?"
 description: "A Quebec sociological study explores how individualization is transforming the way we exist in the world — and what it reveals about our contemporary societies."
 pubDate: 2026-06-07
+researchTitle: "Société et subjectivité: transformations contemporaines"
+researchNote: "A collective work bringing together contributions from researchers across several countries, including Bernard Lahire, Jean-Claude Kaufmann, and Michel Wieviorka, on how individualization concretely plays out across four spheres: identity construction, public/private space, institutions, and forms of sociability."
+researchCitation: "Mercure, D. and Bourdages-Sylvain, M.-P. (eds.), 2021 · Presses de l'Université Laval · 190 p. · open access"
 ---
 
 ## The big question
@@ -67,8 +70,3 @@ The result? A creative, open, diverse society. But also a society where many peo
 What the researchers are telling us, at bottom, is this: understanding how society shapes the way we see ourselves is the first step to no longer undergoing that shaping without questioning it.
 
 Are we really the authors of our own lives? Perhaps. But the script was written well before we were born.
-
----
-
-📚 **Source**
-Mercure, D. and Bourdages-Sylvain, M.-P. (eds.) (2021). *Société et subjectivité: transformations contemporaines*. Presses de l'Université Laval, Sociologie contemporaine collection, 190 p. Available in open access via the Université Laval library.

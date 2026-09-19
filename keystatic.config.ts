@@ -18,6 +18,24 @@ function postSchema(label: string) {
 			publicPath: '../../../assets/blog/',
 			validation: { isRequired: false },
 		}),
+		researchTitle: fields.text({
+			label: 'Encadré recherche — Titre de l\'étude',
+			description: 'Laisser vide pour ne pas afficher l\'encadré',
+			validation: { isRequired: false },
+		}),
+		researchNote: fields.text({
+			label: 'Encadré recherche — Résumé de la méthodologie',
+			multiline: true,
+			validation: { isRequired: false },
+		}),
+		researchCitation: fields.text({
+			label: 'Encadré recherche — Référence (auteurs, éditeur, année)',
+			validation: { isRequired: false },
+		}),
+		researchUrl: fields.url({
+			label: 'Encadré recherche — Lien vers l\'étude',
+			validation: { isRequired: false },
+		}),
 		content: fields.markdoc({
 			label: 'Contenu',
 			extension: 'md',
