@@ -5,10 +5,11 @@ import { getCollection } from "astro:content";
 import { LOCALES } from "../../../i18n";
 
 export async function getStaticPaths({ paginate }) {
-  const posts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
   const paths = [];
 
   for (const lang of Object.keys(LOCALES)) {
+    const posts = allPosts.filter((post) => post.id.startsWith(`${lang}/`));
     const paginated = paginate(posts, {
       pageSize: 12,
       params: { lang },
@@ -42,7 +43,7 @@ const { page } = Astro.props;
     <div class="container">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-10 gap-6">
         {page.data.map((post) => (
-          <a href={`/${locale}/blog/${post.id}`} class="border p-6 hover:underline">
+          <a href={`/${locale}/blog/${post.id.slice(locale.length + 1)}`} class="border p-6 hover:underline">
             <p class="text-xs uppercase opacity-50 mb-2">{post.data.pubDate.toLocaleDateString('fr-CA')}</p>
             <h3 class="font-bold mb-2">{post.data.title}</h3>
             <p class="text-sm opacity-70">{post.data.description}</p>

@@ -5,13 +5,14 @@ import { LOCALES } from "../../../i18n";
 import { render } from "astro:content";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("blog");
+  const allPosts = await getCollection("blog");
   const paths = [];
 
   for (const lang of Object.keys(LOCALES)) {
+    const posts = allPosts.filter((post) => post.id.startsWith(`${lang}/`));
     for (const post of posts) {
       paths.push({
-        params: { lang, slug: post.id },
+        params: { lang, slug: post.id.slice(lang.length + 1) },
         props: { post },
       });
     }
@@ -60,7 +61,7 @@ const { Content } = await render(post);
 
   <section class="section">
     <div class="container">
-      <div class="max-w-3xl mx-auto prose prose-lg prose-headings:mt-10 prose-headings:mb-4 prose-p:mb-6">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-headings:mt-10 prose-headings:mb-4 prose-p:mb-8 prose-p:leading-relaxed">
         <Content />
       </div>
     </div>

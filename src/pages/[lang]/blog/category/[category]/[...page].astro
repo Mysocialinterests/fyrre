@@ -1,11 +1,11 @@
 ---
-import { client } from "../../../../lib/sanity";
-import Layout from "../../../../layouts/Base.astro";
-import Hero from "../../../../components/Hero.astro";
-import PostCard from "../../../../components/PostCardBase.astro";
-import Pagination from "../../../../components/Pagination.astro";
+import { client } from "../../../../../lib/sanity";
+import Layout from "../../../../../layouts/Base.astro";
+import Hero from "../../../../../components/Hero.astro";
+import PostCard from "../../../../../components/PostCardBase.astro";
+import Pagination from "../../../../../components/Pagination.astro";
 
-import { LOCALES } from "../../../../i18n";
+import { LOCALES } from "../../../../../i18n";
 
 export async function getStaticPaths({ paginate }) {
   const paths = [];
