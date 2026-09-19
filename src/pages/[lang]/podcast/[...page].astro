@@ -1,22 +1,25 @@
 ---
 import Layout from "../../../layouts/Base.astro";
 import Hero from "../../../components/Hero.astro";
-import { LOCALES } from "../../../i18n";
+import { LOCALES, useTranslations } from "../../../i18n";
 
 export const getStaticPaths = () =>
   Object.keys(LOCALES).map((lang) => ({
     params: { lang },
   }));
+
+const locale = Astro.params.lang;
+const t = useTranslations(locale);
 ---
 
-<Layout title="Podcast — Mes Intérêts Sociaux">
+<Layout title={t({ fr: "Podcast — Mes Intérêts Sociaux", en: "Podcast — My Social Interests" })}>
   <Hero title="Podcast" />
 
   <section class="section">
     <div class="container">
       <div class="max-w-3xl mx-auto py-10">
         <p class="text-lg">
-          Les épisodes arrivent bientôt. Restez à l'écoute!
+          {t({ fr: "Les épisodes arrivent bientôt. Restez à l'écoute!", en: "Episodes are coming soon. Stay tuned!" })}
         </p>
       </div>
     </div>

@@ -1,6 +1,6 @@
 ---
-import { SITE_TITLE } from "../consts";
+import { getSiteTitle } from "../consts";
 const locale = Astro.currentLocale;
 ---
 
-<a href={`/${locale}`} class="logo font-bold uppercase"> {SITE_TITLE} </a>
+<a href={`/${locale}`} class="logo font-bold uppercase"> {getSiteTitle(locale)} </a>

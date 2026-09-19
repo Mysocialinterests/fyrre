@@ -1,9 +1,9 @@
 ---
-import { menu } from "../consts";
+import { getMenu } from "../consts";
 import Socials from "./Socials.astro";
 import Logo from "./Logo.astro";
 const locale = Astro.currentLocale;
-
+const menu = getMenu(locale);
 ---
 
 <div class="drawer-side">

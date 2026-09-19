@@ -3,8 +3,9 @@ import Logo from "./Logo.astro";
 import Socials from "./Socials.astro";
 import LangSwitcher from "./i18n/LangSwitcher.astro";
 
-import { menu } from "../consts";
+import { getMenu } from "../consts";
 const locale = Astro.currentLocale;
+const menu = getMenu(locale);
 ---
 
 <header class="relative header px-4 z-10">

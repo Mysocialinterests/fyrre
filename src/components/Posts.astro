@@ -1,6 +1,8 @@
 ---
 import { getCollection } from "astro:content";
+import { useTranslations } from "../i18n";
 const locale = Astro.currentLocale;
+const t = useTranslations(locale);
 
 const allPosts = await getCollection("blog");
 const posts = allPosts
@@ -14,12 +16,12 @@ const posts = allPosts
       <div class="container">
         <div class="border-t pt-8">
           <div class="flex flex-wrap gap-4 justify-between items-center mb-10">
-            <h2 class="h1">Derniers articles</h2>
+            <h2 class="h1">{t({ fr: "Derniers articles", en: "Latest articles" })}</h2>
             <a
               href={`/${locale}/blog`}
               class="btn btn-link text-inherit uppercase no-underline group p-0"
             >
-              Tous les articles
+              {t({ fr: "Tous les articles", en: "All articles" })}
               <i class="fa-solid fa-arrow-right group-hover:translate-x-1" />
             </a>
           </div>
@@ -27,7 +29,7 @@ const posts = allPosts
             {posts.map((post) => (
               <a href={`/${locale}/blog/${post.id.slice(locale.length + 1)}`} class="border p-6 hover:underline">
                 <p class="text-xs uppercase opacity-50 mb-2">
-                  {post.data.pubDate.toLocaleDateString('fr-CA')}
+                  {post.data.pubDate.toLocaleDateString(locale === 'en' ? 'en-CA' : 'fr-CA')}
                 </p>
                 <h3 class="font-bold mb-2">{post.data.title}</h3>
                 <p class="text-sm opacity-70">{post.data.description}</p>

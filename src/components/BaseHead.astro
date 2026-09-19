@@ -4,7 +4,7 @@
 import "../styles/global.css";
 import type { ImageMetadata } from "astro";
 import FallbackImage from "../assets/og-1200x630.jpg";
-import { SITE_TITLE, SITE_DESCRIPTION } from "../consts";
+import { getSiteTitle, getSiteDescription } from "../consts";
 import { Font } from "astro:assets";
 interface Props {
   title: string;
@@ -13,10 +13,11 @@ interface Props {
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const SITE_TITLE = getSiteTitle(Astro.currentLocale);
 
 const {
   title,
-  description = SITE_DESCRIPTION,
+  description = getSiteDescription(Astro.currentLocale),
   image = FallbackImage,
 } = Astro.props;
 const pageTitle = `${SITE_TITLE} | ${title}`;

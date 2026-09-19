@@ -1,5 +1,7 @@
 ---
+import { useTranslations } from "../i18n";
 const locale = Astro.currentLocale;
+const t = useTranslations(locale);
 ---
 
 <section class="section section-podcasts">
@@ -11,12 +13,12 @@ const locale = Astro.currentLocale;
           href={`/${locale}/podcast`}
           class="btn btn-link text-inherit uppercase no-underline group p-0"
         >
-          Tous les épisodes
+          {t({ fr: "Tous les épisodes", en: "All episodes" })}
           <i class="fa-solid fa-arrow-right group-hover:translate-x-1" />
         </a>
       </div>
       <div class="mt-10">
-        <p class="text-lg">Les épisodes arrivent bientôt. Restez à l'écoute!</p>
+        <p class="text-lg">{t({ fr: "Les épisodes arrivent bientôt. Restez à l'écoute!", en: "Episodes are coming soon. Stay tuned!" })}</p>
       </div>
     </div>
   </div>
