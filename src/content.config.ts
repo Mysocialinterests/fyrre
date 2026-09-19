@@ -17,4 +17,15 @@ const blog = defineCollection({
 		}),
 });
 
-export const collections = { blog };
+const home = defineCollection({
+	// One entry per locale: src/content/home/fr.yaml, src/content/home/en.yaml
+	loader: glob({ base: './src/content/home', pattern: '*.yaml' }),
+	schema: ({ image }) =>
+		z.object({
+			heroTitle: z.string(),
+			introDescription: z.string(),
+			heroImage: z.optional(image()),
+		}),
+});
+
+export const collections = { blog, home };

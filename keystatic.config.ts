@@ -1,4 +1,4 @@
-import { config, fields, collection } from '@keystatic/core';
+import { config, fields, collection, singleton } from '@keystatic/core';
 
 function postSchema(label: string) {
 	return {
@@ -25,6 +25,22 @@ function postSchema(label: string) {
 	};
 }
 
+function homeSchema() {
+	return {
+		heroTitle: fields.text({ label: 'Titre principal' }),
+		introDescription: fields.text({
+			label: 'Texte d\'introduction',
+			multiline: true,
+		}),
+		heroImage: fields.image({
+			label: 'Photo de la bannière',
+			directory: 'src/assets/home',
+			publicPath: '../../assets/home/',
+			validation: { isRequired: false },
+		}),
+	};
+}
+
 export default config({
 	storage: {
 		kind: 'github',
@@ -44,6 +60,18 @@ export default config({
 			path: 'src/content/blog/en/*',
 			format: { contentField: 'content' },
 			schema: postSchema('English'),
+		}),
+	},
+	singletons: {
+		homeFr: singleton({
+			label: 'Page d\'accueil (Français)',
+			path: 'src/content/home/fr',
+			schema: homeSchema(),
+		}),
+		homeEn: singleton({
+			label: 'Page d\'accueil (English)',
+			path: 'src/content/home/en',
+			schema: homeSchema(),
 		}),
 	},
 });

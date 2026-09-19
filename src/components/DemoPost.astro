@@ -2,16 +2,21 @@
 import { useTranslations } from "../i18n";
 const locale = Astro.currentLocale;
 const t = useTranslations(locale);
+
+const {
+  title = t({ fr: "Passer du bruit à la nuance", en: "From noise to nuance" }),
+  description = t({ fr: "Une plateforme dédiée au transfert de connaissances rigoureux et neutre — pour que les décisions reposent sur le savoir, pas sur la polarisation.", en: "A platform dedicated to rigorous, neutral knowledge transfer — so that decisions rest on evidence, not polarization." }),
+} = Astro.props;
 ---
 
 <section class="section section-demo-post">
   <div class="container grid gap-10">
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 group">
       <div>
-        <h2 class="h1">{t({ fr: "Passer du bruit à la nuance", en: "From noise to nuance" })}</h2>
+        <h2 class="h1">{title}</h2>
       </div>
       <div class="grid gap-4">
-        <p>{t({ fr: "Une plateforme dédiée au transfert de connaissances rigoureux et neutre — pour que les décisions reposent sur le savoir, pas sur la polarisation.", en: "A platform dedicated to rigorous, neutral knowledge transfer — so that decisions rest on evidence, not polarization." })}</p>
+        <p>{description}</p>
         <div class="flex flex-wrap gap-x-6 gap-y-3 justify-between items-center">
           <a
             href={`/${locale}/blog`}

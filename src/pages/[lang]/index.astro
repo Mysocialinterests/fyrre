@@ -6,8 +6,11 @@ import Demo from "../../components/DemoPost.astro";
 import Posts from "../../components/Posts.astro";
 import Podcasts from "../../components/Podcasts.astro";
 import { LOCALES, useTranslations } from "../../i18n";
+import { getEntry } from "astro:content";
+
 const locale = Astro.currentLocale;
 const t = useTranslations(locale);
+const home = await getEntry("home", locale);
 
 export const getStaticPaths = () =>
   Object.keys(LOCALES).map((lang) => ({
@@ -16,9 +19,9 @@ export const getStaticPaths = () =>
 ---
 
 <Layout title={t({ fr: "Mes Intérêts Sociaux — Passer du bruit à la nuance", en: "My Social Interests — From noise to nuance" })}>
-  <Hero title={t({ fr: "Passer du bruit à la nuance", en: "From noise to nuance" })} />
+  <Hero title={home.data.heroTitle} image={home.data.heroImage} />
   <Topline />
-  <Demo />
+  <Demo title={home.data.heroTitle} description={home.data.introDescription} />
   <Posts />
   <Podcasts />
 </Layout>
