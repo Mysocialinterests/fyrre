@@ -86,6 +86,18 @@ body {
     @apply mt-6 leading-relaxed;
   }
 
+  a {
+    @apply underline underline-offset-2 font-medium;
+  }
+
+  p:has(> a:only-child) {
+    @apply mt-8;
+
+    a {
+      @apply inline-flex btn btn-outline rounded-full py-1 px-4 h-auto no-underline uppercase text-xs tracking-wide hover:bg-black hover:text-white;
+    }
+  }
+
   big {
     @apply font-semibold text-lg;
   }

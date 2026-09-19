@@ -18,6 +18,8 @@ The study reveals that the algorithm heavily favors watch time and completion ra
 
 > The algorithm doesn't just predict our tastes: it acts as an invisible teacher, showing us what's worth watching.
 
+[More on the research →](https://doi.org/10.25236/FAR.2025.070701)
+
 **Algorithmic mechanics and media dependency**: Drawing on Media System Dependency Theory (Ball-Rokeach and DeFleur), the study shows that functional dependency — avoiding decision fatigue — quickly turns into psychological dependency. Analysis of Netflix's patents confirms that recent viewing behavior (the last 30 days) is weighted three times more heavily than the rest of one's history, accelerating how fast we grow accustomed to new visual standards.
 
 ## The brain under influence: what neuroscience reveals
@@ -27,6 +29,8 @@ One of the study's most fascinating contributions lies in its experimental proto
 The results expose a striking gap between what we say and our unconscious reactions. Watching recommended content, the brain shows strong beta-wave activity, a sign of sustained attention and intellectual focus — gaze fixates mainly on characters' faces. Watching non-recommended content, researchers instead observed spikes in gamma waves, linked to deep aesthetic pleasure and emotional arousal, along with a stronger skin response.
 
 And yet 38% of participants rated the recommended clips more highly than their brain activity predicted. This is the "convenience bias": we say we like something simply because it was easy and pleasant to consume, when a non-recommended work would have given us a far more vivid artistic emotion.
+
+[More on the research →](https://doi.org/10.25236/FAR.2025.070701)
 
 **The contribution of neuroaesthetics**: Integrating neurophysiological data — EEG, eye-tracking, skin response — makes it possible to move past the biases of self-reported surveys. The study shows that the engagement metrics platforms rely on (time spent) don't necessarily reflect genuine aesthetic appreciation, but rather passive attentional capture.
 
@@ -39,5 +43,7 @@ Nearly 38% of surveyed users practice some form of algorithmic resistance. **Dec
 This resistance also varies by culture. In South Korea, for instance, even though reliance on recommendations is very strong, users show the highest resistance rate of all, to preserve narrative and local diversity against globalized productions.
 
 > Making an "indie" profile is my way of keeping the algorithm at arm's length, and still discovering weird, stimulating work.
+
+[More on the research →](https://doi.org/10.25236/FAR.2025.070701)
 
 **The dynamic negotiation model**: The author proposes a model that moves beyond pure technological determinism. The relationship between algorithm and audience is an ongoing negotiation, where technology steers trends, but human agency and cultural specificity — the study compares the U.S., Brazilian, and South Korean markets — inject diversity back in.
