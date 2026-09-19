@@ -71,12 +71,15 @@ body {
 }
 
 .post {
-  h2,
+  h2 {
+    @apply mt-16 mb-5 text-2xl md:text-3xl text-balance;
+  }
+
   h3,
   h4,
   h5,
   h6 {
-    @apply mt-16 mb-5;
+    @apply mt-16 mb-5 text-xl md:text-2xl text-balance;
   }
 
   p {

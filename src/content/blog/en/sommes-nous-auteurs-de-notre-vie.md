@@ -25,6 +25,8 @@ It's not just "what you think of yourself." It's something deeper: the way socie
 
 In other words: your subjectivity is the invisible filter through which you live your life. And that filter changes with the times.
 
+> Your subjectivity is the invisible filter through which you live your life. And that filter changes with the times.
+
 ## The great shift: individualization
 
 Since the 1980s, our Western societies have been living through what sociologists call a vast process of **individualization**. The individual has become the central value of our societies — wanting to be the author of their own story, free in their choices, responsible for their successes as much as their failures.
@@ -53,6 +55,8 @@ The researchers don't naively praise this individualization. They also expose it
 
 First tension: **freedom without a safety net**. When society values the individual as the sole party responsible for their life, it tends to erase the structural causes of inequality. Didn't succeed? That's your fault — not the system's. This logic weighs particularly heavily on those who start out with fewer resources.
 
+> Didn't succeed? That's your fault — not the system's.
+
 Second tension: **identity fatigue**. Constantly building yourself, reinventing yourself, being authentic while meeting social expectations — this is invisible, constant work. Several researchers link this pressure to the rise of mental health issues in our societies.
 
 Third tension: **the inequality of freedom**. Not everyone has the same access to this freedom to "build themselves." Subjectivity is also shaped by social class, gender, ethnic origin, and geography. The "free and autonomous" individual is often a privilege.
@@ -70,3 +74,5 @@ The result? A creative, open, diverse society. But also a society where many peo
 What the researchers are telling us, at bottom, is this: understanding how society shapes the way we see ourselves is the first step to no longer undergoing that shaping without questioning it.
 
 Are we really the authors of our own lives? Perhaps. But the script was written well before we were born.
+
+> Are we really the authors of our own lives? Perhaps. But the script was written well before we were born.

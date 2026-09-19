@@ -25,6 +25,8 @@ Ce n'est pas juste "ce que tu penses de toi-même". C'est quelque chose de plus 
 
 En d'autres mots : ta subjectivité, c'est le filtre invisible à travers lequel tu vis ta vie. Et ce filtre change selon les époques.
 
+> Ta subjectivité, c'est le filtre invisible à travers lequel tu vis ta vie. Et ce filtre change selon les époques.
+
 ## Le grand tournant : l'individualisation
 
 Depuis les années 1980, nos sociétés occidentales vivent ce que les sociologues appellent un vaste processus d'**individualisation**. L'individu est devenu la valeur centrale de nos sociétés — il se veut auteur de son histoire, libre de ses choix, responsable de ses succès comme de ses échecs.
@@ -53,6 +55,8 @@ Les chercheurs ne font pas l'éloge naïf de cette individualisation. Ils en exp
 
 Première tension : **la liberté sans filet**. Quand la société valorise l'individu comme seul responsable de sa vie, elle tend à effacer les causes structurelles des inégalités. Tu n'as pas réussi? C'est ta faute — pas celle du système. Cette logique pèse particulièrement lourd sur ceux qui partent avec moins de ressources.
 
+> Tu n'as pas réussi? C'est ta faute — pas celle du système.
+
 Deuxième tension : **la fatigue identitaire**. Se construire en permanence, se réinventer, être authentique tout en répondant aux attentes sociales — c'est un travail invisible et constant. Plusieurs chercheurs associent cette pression à l'augmentation des problèmes de santé mentale dans nos sociétés.
 
 Troisième tension : **l'inégalité de la liberté**. Tout le monde n'a pas le même accès à cette liberté de "se construire soi-même". La subjectivité est aussi façonnée par la classe sociale, le genre, l'origine ethnique, le territoire. L'individu "libre et autonome" est souvent un privilège.
@@ -70,3 +74,5 @@ Le résultat? Une société créative, ouverte, diverse. Mais aussi une sociét�
 Ce que les chercheurs nous disent, au fond, c'est ceci : comprendre comment la société façonne notre façon de nous voir nous-mêmes, c'est le premier pas pour ne plus subir ce façonnage sans le questionner.
 
 Sommes-nous vraiment les auteurs de notre vie? Peut-être. Mais le script, lui, a été écrit bien avant notre naissance.
+
+> Sommes-nous vraiment les auteurs de notre vie? Peut-être. Mais le script, lui, a été écrit bien avant notre naissance.
