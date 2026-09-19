@@ -1,5 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+@plugin "@tailwindcss/typography";
 
 @import "@fortawesome/fontawesome-free/css/all.css";
 
