@@ -76,11 +76,11 @@ body {
   h4,
   h5,
   h6 {
-    @apply mt-4 mb-3;
+    @apply mt-16 mb-5;
   }
 
   p {
-    @apply mt-5;
+    @apply mt-6 leading-relaxed;
   }
 
   big {
