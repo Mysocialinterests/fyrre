@@ -3,7 +3,7 @@
 import mdx from '@astrojs/mdx';
 import sitemap from '@astrojs/sitemap';
 import react from '@astrojs/react';
-import vercel from '@astrojs/vercel';
+import cloudflare from '@astrojs/cloudflare';
 import keystatic from '@keystatic/astro';
 import { defineConfig, fontProviders } from 'astro/config';
 import tailwindcss from "@tailwindcss/vite";
@@ -11,7 +11,14 @@ import { DEFAULT_LOCALE_SETTING, LOCALES_SETTING } from './src/locales';
 // https://astro.build/config
 export default defineConfig({
 	site: 'https://fyrre-seven.vercel.app/',
-	adapter: vercel(),
+	adapter: cloudflare({
+		// Cloudflare Workers can't run sharp (Astro's default image
+		// optimizer, a native Node addon). passthrough serves images
+		// as-is instead of resizing/converting them, which is the
+		// safest option without opting into Cloudflare's own paid
+		// Images service.
+		imageService: 'passthrough',
+	}),
 	integrations: [mdx(), sitemap(), react(), keystatic()],
 	image: { domains: ["cdn.sanity.io"], },
 	vite: {
